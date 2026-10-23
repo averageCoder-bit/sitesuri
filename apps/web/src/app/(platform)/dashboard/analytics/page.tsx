@@ -16,6 +16,7 @@ type AnalyticsPageProps = {
     lng?: string;
     radius?: string;
     category?: string;
+    location_id?: string;
   }>;
 };
 
@@ -59,6 +60,7 @@ export default async function AnalyticsPage({
       analyticsMode={analyticsMode}
       savedIds={savedIds}
       initialArea={initialArea}
+      initialLocationId={params.location_id}
     />
   );
 }

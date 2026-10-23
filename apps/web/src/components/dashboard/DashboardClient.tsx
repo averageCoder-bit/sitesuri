@@ -183,6 +183,14 @@ function DashboardContent({
   const initializedLocationRef = useRef<string | null>(null);
 
   useEffect(() => {
+    if (view !== "analytics" || analyticsMode !== "area" || !initialArea) {
+      return;
+    }
+
+    setRadius(initialArea.radius);
+  }, [view, analyticsMode, initialArea?.radius]);
+
+  useEffect(() => {
     if (
       view !== "analytics" ||
       analyticsMode !== "area" ||
@@ -354,8 +362,8 @@ function DashboardContent({
 
   function handleAnalyzeCandidate(location: CandidateLocation) {
     const params = new URLSearchParams({
-      lat: String(point.lat),
-      lng: String(point.lng),
+      lat: String(location.latitude),
+      lng: String(location.longitude),
       radius: String(radius),
       category,
       location_id: location.location_id,
